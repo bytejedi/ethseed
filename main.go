@@ -8,8 +8,6 @@ import (
 )
 
 func main() {
-	keystorePassword := "password"
-
 	entropy, err := bip39.NewEntropy(128)
 	if err != nil {
 		panic(err)
@@ -17,8 +15,7 @@ func main() {
 	mnemonic, _ := bip39.NewMnemonic(entropy)
 	//mnemonic := ""
 
-	seed := bip39.NewSeed(mnemonic, keystorePassword)
-	wallet, err := hdwallet.NewFromSeed(seed)
+	wallet, err := hdwallet.NewFromMnemonic(mnemonic)
 	if err != nil {
 		panic(err)
 	}
